@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yashodhar Naik — AI/ML Developer Portfolio</title>
+  <meta name="description" content="Portfolio of Yashodhar Naik — AI/ML Enthusiast, Full-Stack Developer, and BE student specializing in Artificial Intelligence and Machine Learning." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════ PRELOADER / INTRO ═══════ -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <span class="pl-bracket">&lt;</span><span class="pl-text">YN</span><span class="pl-bracket"> /&gt;</span>
+      </div>
+      <p class="preloader-tagline">Building the future with AI</p>
+      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════ CUSTOM CURSOR ═══════ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-trail" id="trail0"></div>
+  <div class="cursor-trail" id="trail1"></div>
+  <div class="cursor-trail" id="trail2"></div>
+  <div class="cursor-trail" id="trail3"></div>
+  <div class="cursor-trail" id="trail4"></div>
+
+  <!-- ═══════ 3D CANVAS (Three.js floating objects) ═══════ -->
+  <canvas id="threeBg"></canvas>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>YN<span class="logo-bracket"> /&gt;</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="ri-moon-fill theme-icon-dark"></i>
+          <i class="ri-sun-fill theme-icon-light"></i>
+        </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Yashodhar <span class="gradient-text">Naik</span></h1>
+      <div class="hero-subtitle-wrapper">
+        <span class="hero-subtitle-label">I am a&nbsp;</span>
+        <span class="hero-subtitle" id="rotatingText"></span>
+        <span class="hero-cursor">|</span>
+      </div>
+      <p class="hero-description">
+        Crafting intelligent solutions at the intersection of AI, Machine Learning, and modern web technologies.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary magnetic" id="ctaContact">
+          <i class="ri-mail-send-line"></i> Contact Me
+        </a>
+        <a href="#projects" class="btn btn-outline magnetic" id="ctaProjects">
+          <i class="ri-folder-3-line"></i> View Projects
+        </a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/yashodhar-naik-351419307/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-icon magnetic">
+          <i class="ri-linkedin-fill"></i>
+        </a>
+        <a href="https://github.com/yash359am" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-icon magnetic">
+          <i class="ri-github-fill"></i>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title" data-animate="heading">
+        <span class="gradient-text">About</span> Me
+      </h2>
+      <div class="about-grid">
+        <div class="about-image-wrapper" data-animate="left">
+          <div class="about-image-container">
+            <div class="about-avatar">
+              <span class="avatar-initials">YN</span>
+            </div>
+            <div class="about-image-border"></div>
+          </div>
+          <div class="about-image-dots"></div>
+        </div>
+        <div class="about-text" data-animate="right">
+          <h3 class="about-headline">
+            A passionate <span class="gradient-text">AI/ML Enthusiast</span> &amp; Developer
+          </h3>
+          <p>
+            I'm <strong>Yashodhar Naik</strong>, a <strong>BE student</strong> specializing in
+            <strong>Artificial Intelligence &amp; Machine Learning</strong>, currently in my
+            <strong>2nd Year (4th Semester)</strong>. I love building intelligent systems and crafting
+            beautiful, responsive web experiences.
+          </p>
+          <p>
+            My journey spans from training ML models with Python's scientific stack to building
+            dynamic front-end interfaces with JavaScript and GSAP animations. I thrive on solving
+            real-world problems through technology and am always eager to learn the next big thing.
+          </p>
+          <div class="about-stats">
+            <div class="stat-item glass-card">
+              <span class="stat-number" data-count="4">0</span>
+              <span class="stat-label">Semester</span>
+            </div>
+            <div class="stat-item glass-card">
+              <span class="stat-number" data-count="7">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Technologies</span>
+            </div>
+            <div class="stat-item glass-card">
+              <span class="stat-number" data-count="10">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">Projects</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary">
+            <i class="ri-chat-3-line"></i> Let's Talk
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS ═══════════════════ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title" data-animate="heading">
+        My <span class="gradient-text">Skills</span>
+      </h2>
+      <p class="section-subtitle" data-animate="fade">The technologies and tools I work with</p>
+      <div class="skills-grid">
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #f7df1e;">
+            <i class="ri-javascript-fill"></i>
+          </div>
+          <h4>JavaScript</h4>
+          <p>Interactive web apps & DOM manipulation</p>
+        </div>
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #e44d26;">
+            <i class="ri-html5-fill"></i>
+          </div>
+          <h4>HTML & CSS</h4>
+          <p>Semantic markup & responsive design</p>
+        </div>
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #88ce02;">
+            <i class="ri-movie-2-fill"></i>
+          </div>
+          <h4>GSAP</h4>
+          <p>High-performance scroll & timeline animations</p>
+        </div>
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #47a248;">
+            <i class="ri-database-2-fill"></i>
+          </div>
+          <h4>MongoDB</h4>
+          <p>NoSQL database design & queries</p>
+        </div>
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #ff6f00;">
+            <i class="ri-robot-2-fill"></i>
+          </div>
+          <h4>AI / ML</h4>
+          <p>Model training, deep learning &amp; NLP</p>
+        </div>
+
+        <div class="skill-card glass-card" data-animate="skill" data-tilt>
+          <div class="skill-icon" style="--accent: #4dabcf;">
+            <i class="ri-bar-chart-box-fill"></i>
+          </div>
+          <h4>NumPy & Pandas</h4>
+          <p>Data wrangling, analysis &amp; visualization</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS ═══════════════════ -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title" data-animate="heading">
+        My <span class="gradient-text">Projects</span>
+      </h2>
+      <p class="section-subtitle" data-animate="fade">A showcase of things I've built</p>
+      <div class="projects-grid">
+
+        <!-- PROJECT CARD 1 -->
+        <article class="project-card glass-card" data-animate="project" data-tilt>
+          <div class="project-image">
+            <div class="project-placeholder"><i class="ri-robot-2-line"></i></div>
+            <div class="project-overlay">
+              <a href="#" class="project-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="project-link" aria-label="Source Code"><i class="ri-github-fill"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Smart Teacher AI System</h4>
+            <p>AI-powered system for real-time teacher performance analysis using camera and microphone.</p>
+            <div class="project-tags">
+              <span>Python</span><span>Gemini API</span><span>AI/ML</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT CARD 2 -->
+        <article class="project-card glass-card" data-animate="project" data-tilt>
+          <div class="project-image">
+            <div class="project-placeholder"><i class="ri-line-chart-line"></i></div>
+            <div class="project-overlay">
+              <a href="#" class="project-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="project-link" aria-label="Source Code"><i class="ri-github-fill"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Data Visualizer Dashboard</h4>
+            <p>Interactive dashboard for exploring datasets with NumPy &amp; Pandas powered analytics.</p>
+            <div class="project-tags">
+              <span>JavaScript</span><span>Pandas</span><span>NumPy</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT CARD 3 -->
+        <article class="project-card glass-card" data-animate="project" data-tilt>
+          <div class="project-image">
+            <div class="project-placeholder"><i class="ri-global-line"></i></div>
+            <div class="project-overlay">
+              <a href="#" class="project-link" aria-label="Live Demo"><i class="ri-external-link-line"></i></a>
+              <a href="#" class="project-link" aria-label="Source Code"><i class="ri-github-fill"></i></a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Portfolio Website</h4>
+            <p>The very site you're viewing — built with vanilla JS, GSAP animations &amp; glassmorphism.</p>
+            <div class="project-tags">
+              <span>HTML/CSS</span><span>GSAP</span><span>JavaScript</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title" data-animate="heading">
+        Get In <span class="gradient-text">Touch</span>
+      </h2>
+      <p class="section-subtitle" data-animate="fade">Have a project in mind? Let's work together!</p>
+      <div class="contact-grid">
+        <div class="contact-info" data-animate="left">
+          <div class="contact-card glass-card" data-tilt>
+            <div class="contact-icon"><i class="ri-mail-line"></i></div>
+            <h4>Email</h4>
+            <p>Drop me a message using the form — I'll get back to you ASAP.</p>
+          </div>
+          <div class="contact-card glass-card" data-tilt>
+            <div class="contact-icon"><i class="ri-linkedin-box-fill"></i></div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/yashodhar-naik-351419307/" target="_blank" rel="noopener noreferrer">Connect with me</a>
+          </div>
+          <div class="contact-card glass-card" data-tilt>
+            <div class="contact-icon"><i class="ri-github-fill"></i></div>
+            <h4>GitHub</h4>
+            <a href="https://github.com/yash359am" target="_blank" rel="noopener noreferrer">View my repos</a>
+          </div>
+        </div>
+        <form id="contactForm" class="contact-form glass-card" data-animate="right" action="https://formsubmit.co/ajax/yashodharnaik44@gmail.com" method="POST">
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_subject" value="New Portfolio Contact Message!" />
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+            <i class="ri-send-plane-fill"></i> Send Message
+          </button>
+          <p class="form-note">Your message goes straight to my inbox.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer id="footer">
+    <div class="container footer-inner">
+      <a href="#hero" class="footer-logo">
+        <span class="logo-bracket">&lt;</span>YN<span class="logo-bracket"> /&gt;</span>
+      </a>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/yashodhar-naik-351419307/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+        <a href="https://github.com/yash359am" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Yashodhar Naik. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
