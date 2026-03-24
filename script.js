@@ -5,13 +5,57 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ────────────────── GLOBAL CURSOR POSITION ────────────────── */
+/* ────────────────── DEVICE & STATE ────────────────── */
 const cursor = { x: 0, y: 0, nx: 0, ny: 0 };
+const getDeviceType = () => {
+  const w = window.innerWidth;
+  if (w <= 768) return 'mobile';
+  if (w <= 1024) return 'tablet';
+  return 'desktop';
+};
+
+let deviceType = getDeviceType();
+let isMobileMode = deviceType !== 'desktop';
+
+window.addEventListener('resize', () => {
+  const nextType = getDeviceType();
+  if (nextType !== deviceType) {
+    deviceType = nextType;
+    isMobileMode = deviceType !== 'desktop';
+    // Optional: reload or adjust heavy elements here
+  }
+});
+
+/* ────────────────── SMOOTH SCROLL (Lenis) ────────────────── */
+// Momentum scrolling for Desktop and Tablets for premium feel
+let lenis;
+if (window.innerWidth > 768) {
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    touchMultiplier: 2,
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
+}
+
 window.addEventListener('mousemove', e => {
+  if (isMobileMode) return;
   cursor.x = e.clientX;
   cursor.y = e.clientY;
-  cursor.nx = (e.clientX / window.innerWidth) * 2 - 1;   // -1…+1
-  cursor.ny = -(e.clientY / window.innerHeight) * 2 + 1;  // -1…+1
+  cursor.nx = (e.clientX / window.innerWidth) * 2 - 1;
+  cursor.ny = -(e.clientY / window.innerHeight) * 2 + 1;
 });
 
 /* ═══════════════════════════════════════════════════════
@@ -20,7 +64,14 @@ window.addEventListener('mousemove', e => {
 (function init3DScene() {
   const canvas = document.getElementById('threeBg');
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  
+  const getDPR = () => {
+    if (deviceType === 'mobile') return 1;
+    if (deviceType === 'tablet') return 1.5;
+    return Math.min(window.devicePixelRatio, 2);
+  };
+  
+  renderer.setPixelRatio(getDPR());
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   const scene = new THREE.Scene();
@@ -332,6 +383,7 @@ window.addEventListener('mousemove', e => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(getDPR());
   });
 
   /* ── Theme-aware opacity ── */
@@ -375,7 +427,7 @@ window.addEventListener('mousemove', e => {
   const ring  = document.getElementById('cursorRing');
   const trails = [0,1,2,3,4].map(i => document.getElementById('trail' + i));
 
-  if (!dot || !ring || window.matchMedia('(hover: none)').matches) return;
+  if (!dot || !ring || isMobileMode) return;
 
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
   let rx = mx, ry = my;
